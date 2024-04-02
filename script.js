@@ -1,3 +1,18 @@
+const rockButton = document.createElement("button");
+rockButton.textContent = "rock";
+rockButton.addEventListener("click", playRound(rockButton.textContent, getComputerChoice()));
+
+const scissorsButton = document.createElement("button");
+scissorsButton.textContent = "scissors";
+scissorsButton.addEventListener("scissors", playRound(rockButton.textContent, getComputerChoice()));
+
+const paperButton = document.createElement("button");
+paperButton.textContent = "paper";
+paperButton.addEventListener("paper", playRound(paperButton.textContent, getComputerChoice()));
+
+
+
+
 function getComputerChoice() {
   const choices = ["Rock", "Paper", "Scissors"];
   return choices[Math.floor(Math.random() * 3)]
