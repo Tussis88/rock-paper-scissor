@@ -3,41 +3,6 @@ const answer = document.querySelector("#result");
 
 let result = ["good luck", 0];
 
-const updateResult = () => {
-  if (result.at(1) > -5 && result.at(1) < 5) {
-    answer.textContent = `${result.at(0)} || total points = ${result.at(1)}`;
-  } else if (result.at(1) >= 5) {
-    answer.textContent = `Congratulation! You won the game`;
-    buttons.style.display = "none";
-  } else if (result.at(1) <= -5) {
-    answer.textContent = `You lose the game!`;
-    buttons.style.display = "none";
-  }
-};
-
-function getComputerChoice() {
-  const choices = ["Rock", "Paper", "Scissors"];
-  return choices[Math.floor(Math.random() * 3)];
-}
-
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === "Rock") {
-    if (computerSelection === "Rock") return ["It's a Tie", 0];
-    else if (computerSelection === "Paper")
-      return ["You Lose this round! Paper beats rock", -1];
-    else return ["You won this round!! Rock beats Scissiors!", 1];
-  } else if (playerSelection === "Paper") {
-    if (computerSelection === "Paper") return ["It's a Tie", 0];
-    else if (computerSelection === "Scissors")
-      return ["You Lose this round! Scissors bests paper", -1];
-    else return ["You won this round! Paper beats Rock", 1];
-  } else if (playerSelection === "Scissors") {
-    if (computerSelection === "Scissors") return ["It's a Tie", 0];
-    else if (computerSelection === "Rock")
-      return ["You lose this round! Rock beats Scissors", -1];
-    else return ["You won this round! Scissors beats Paper", 1];
-  }
-}
 const rockButton = document.createElement("button");
 rockButton.textContent = "Rock";
 rockButton.addEventListener("click", () => {
@@ -69,4 +34,39 @@ buttons.appendChild(rockButton);
 buttons.appendChild(scissorButton);
 buttons.appendChild(paperButton);
 
+const updateResult = () => {
+  if (result.at(1) > -5 && result.at(1) < 5) {
+    answer.innerHTML = `${result.at(0)} <br> total points = ${result.at(1)}`;
+  } else if (result.at(1) >= 5) {
+    answer.textContent = `Congratulation! You won the game`;
+    buttons.style.display = "none";
+  } else if (result.at(1) <= -5) {
+    answer.textContent = `You lose the game!`;
+    buttons.style.display = "none";
+  }
+};
+
+const getComputerChoice = () => {
+  const choices = ["Rock", "Paper", "Scissors"];
+  return choices[Math.floor(Math.random() * 3)];
+};
+
+const playRound = (playerSelection, computerSelection) => {
+  if (playerSelection === "Rock") {
+    if (computerSelection === "Rock") return ["It's a Tie", 0];
+    else if (computerSelection === "Paper")
+      return ["You Lose this round! Paper beats rock", -1];
+    else return ["You won this round!! Rock beats Scissiors!", 1];
+  } else if (playerSelection === "Paper") {
+    if (computerSelection === "Paper") return ["It's a Tie", 0];
+    else if (computerSelection === "Scissors")
+      return ["You Lose this round! Scissors bests paper", -1];
+    else return ["You won this round! Paper beats Rock", 1];
+  } else if (playerSelection === "Scissors") {
+    if (computerSelection === "Scissors") return ["It's a Tie", 0];
+    else if (computerSelection === "Rock")
+      return ["You lose this round! Rock beats Scissors", -1];
+    else return ["You won this round! Scissors beats Paper", 1];
+  }
+};
 updateResult();
