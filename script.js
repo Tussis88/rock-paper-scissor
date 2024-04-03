@@ -6,28 +6,19 @@ let result = ["good luck", 0];
 const rockButton = document.createElement("button");
 rockButton.textContent = "Rock";
 rockButton.addEventListener("click", () => {
-  let roundResult = playRound(rockButton.textContent, getComputerChoice());
-  result[0] = roundResult.at(0);
-  result[1] += roundResult.at(1);
-  updateResult();
+  playRound(rockButton.textContent, getComputerChoice());
 });
 
 const scissorButton = document.createElement("button");
 scissorButton.textContent = "Scissors";
 scissorButton.addEventListener("click", () => {
-  let roundResult = playRound(scissorButton.textContent, getComputerChoice());
-  result[0] = roundResult.at(0);
-  result[1] += roundResult.at(1);
-  updateResult();
+  playRound(scissorButton.textContent, getComputerChoice());
 });
 
 const paperButton = document.createElement("button");
 paperButton.textContent = "Paper";
 paperButton.addEventListener("click", () => {
-  let roundResult = playRound(paperButton.textContent, getComputerChoice());
-  result[0] = roundResult.at(0);
-  result[1] += roundResult.at(1);
-  updateResult();
+  playRound(paperButton.textContent, getComputerChoice());
 });
 
 buttons.appendChild(rockButton);
@@ -53,20 +44,36 @@ const getComputerChoice = () => {
 
 const playRound = (playerSelection, computerSelection) => {
   if (playerSelection === "Rock") {
-    if (computerSelection === "Rock") return ["It's a Tie", 0];
-    else if (computerSelection === "Paper")
-      return ["You Lose this round! Paper beats rock", -1];
-    else return ["You won this round!! Rock beats Scissiors!", 1];
+    if (computerSelection === "Rock") {
+      result[0] = "It's a Tie";
+    } else if (computerSelection === "Paper") {
+      result[0] = "You Lose this round! Paper beats rock";
+      result[1] += -1;
+    } else {
+      result[0] = "You Won this round! Rock beats Scissors!";
+      result[1] += 1;
+    }
   } else if (playerSelection === "Paper") {
-    if (computerSelection === "Paper") return ["It's a Tie", 0];
-    else if (computerSelection === "Scissors")
-      return ["You Lose this round! Scissors bests paper", -1];
-    else return ["You won this round! Paper beats Rock", 1];
+    if (computerSelection === "Paper") {
+      result[0] = "It's a Tie";
+    } else if (computerSelection === "Scissors") {
+      result[0] = "You Lose this round! Scissors beats paper";
+      result[1] += -1;
+    } else {
+      result[0] = "You won this round! Paper beats Rock";
+      result[1] += 1;
+    }
   } else if (playerSelection === "Scissors") {
-    if (computerSelection === "Scissors") return ["It's a Tie", 0];
-    else if (computerSelection === "Rock")
-      return ["You lose this round! Rock beats Scissors", -1];
-    else return ["You won this round! Scissors beats Paper", 1];
+    if (computerSelection === "Scissors") {
+      result[0] = "It's a tie";
+    } else if (computerSelection === "Rock") {
+      result[0] = "You loose this round! Rock beats Scissors";
+      result[1] += -1;
+    } else {
+      result[0] = "You won this round! Scissors beats Paper";
+      result[1] += 1;
+    }
   }
+  updateResult();
 };
 updateResult();
